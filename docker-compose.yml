@@ -1,0 +1,25 @@
+# mostly from: https://caddyserver.com/docs/running#docker-compose
+
+# To start: docker compose up -d
+# to reload with new Caddyfile: docker compose exec -w /etc/caddy caddy caddy reload
+# to see recent logs: docker compose logs caddy -n=1000 -f
+
+version: "3.9"
+
+services:
+  caddy:
+    image: caddy:2.7.6-alpine
+    restart: unless-stopped # restart automatically if in case machine is rebooted
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp" # used for HTTP/3
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile # mount Caddyfile to container
+      # - ./site:/srv # mount site folder to container --> used for statically serving files if configured
+      - caddy_data:/data # contains things like TLS certificates https://caddyserver.com/docs/conventions#file-locations
+      - caddy_config:/config # stores confiugrations, e.g. the latest active caddyfile https://caddyserver.com/docs/conventions#file-locations
+
+volumes:
+  caddy_data:
+  caddy_config:

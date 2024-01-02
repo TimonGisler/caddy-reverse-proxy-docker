@@ -1,0 +1,10 @@
+# This is an example file for easy setup. To use it simply pull this repo.
+# localhost must be replaced with the domain name of your choice and host.docker.internal:5281 with the address of the service you want to proxy to
+
+# https://caddyserver.com/docs/quick-starts/reverse-proxy
+# https://caddyserver.com/docs/quick-starts/caddyfile
+
+localhost { # https://caddyserver.com/docs/caddyfile/concepts#addresses
+  reverse_proxy host.docker.internal:5281 # all requests that would go to localhost will be rerouted to host.docker.internal:5281
+}
+
