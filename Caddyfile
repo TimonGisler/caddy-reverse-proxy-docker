@@ -10,5 +10,6 @@ localhost { # https://caddyserver.com/docs/caddyfile/concepts#addresses
 
   # this below wont work always on all machines (for example linux it might not work) https://stackoverflow.com/questions/48546124/what-is-the-linux-equivalent-of-host-docker-internal
   # as alternative one could try to use 172.17.0.1
+  # TODO TGIS, the best way might be this: https://stackoverflow.com/a/24326540/15015069 (allow host.docker.internal for all)
 	reverse_proxy host.docker.internal:5281 # all requests that would go to localhost will be rerouted to host.docker.internal:5281
 }
