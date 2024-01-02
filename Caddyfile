@@ -4,7 +4,11 @@
 # https://caddyserver.com/docs/quick-starts/reverse-proxy
 # https://caddyserver.com/docs/quick-starts/caddyfile
 
-localhost { # https://caddyserver.com/docs/caddyfile/concepts#addresses
-  reverse_proxy host.docker.internal:5281 # all requests that would go to localhost will be rerouted to host.docker.internal:5281
-}
+# SSL can only be added for non ip addresses: https://caddyserver.com/docs/automatic-https#hostname-requirements found through: https://caddy.community/t/automatic-https-with-ip-address/16532/2
 
+localhost { # https://caddyserver.com/docs/caddyfile/concepts#addresses
+
+  # this below wont work always on all machines (for example linux it might not work) https://stackoverflow.com/questions/48546124/what-is-the-linux-equivalent-of-host-docker-internal
+  # as alternative one could try to use 172.17.0.1
+	reverse_proxy host.docker.internal:5281 # all requests that would go to localhost will be rerouted to host.docker.internal:5281
+}

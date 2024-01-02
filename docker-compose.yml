@@ -2,7 +2,8 @@
 
 # To start: docker compose up -d
 # to reload with new Caddyfile: docker compose exec -w /etc/caddy caddy caddy reload
-# to see recent logs: docker compose logs caddy -n=1000 -f
+# to see recent logs: docker compose logs caddy -n=100 -f
+# to format Caddyfile: docker compose exec -w /etc/caddy caddy caddy fmt --overwrite
 
 version: "3.9"
 
