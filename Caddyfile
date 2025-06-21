@@ -7,7 +7,8 @@
 # SSL can only be added for non ip addresses: https://caddyserver.com/docs/automatic-https#hostname-requirements found through: https://caddy.community/t/automatic-https-with-ip-address/16532/2
 
 192.168.0.107 { # https://caddyserver.com/docs/caddyfile/concepts#addresses --> 192.168.0.107 is just the static ip of my laptop
-
+  # This is necessary because lets encrypt can obviously not generate an valid certificate for my local ip address, so i simply tell caddy to do it itself
+	tls internal
   # this below wont work always on all machines (for example linux it might not work) https://stackoverflow.com/questions/48546124/what-is-the-linux-equivalent-of-host-docker-internal
   # as alternative one could try to use 172.17.0.1
   # TODO TGIS, the best way might be this: https://stackoverflow.com/a/24326540/15015069 (allow host.docker.internal for all)
