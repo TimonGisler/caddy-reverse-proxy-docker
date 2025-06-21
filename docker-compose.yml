@@ -4,9 +4,6 @@
 # to reload with new Caddyfile: docker compose exec -w /etc/caddy caddy caddy reload
 # to see recent logs: docker compose logs caddy -n=100 -f
 # to format Caddyfile: docker compose exec -w /etc/caddy caddy caddy fmt --overwrite
-
-version: "3.9"
-
 services:
   caddy:
     image: caddy:2.10.0-alpine
@@ -21,7 +18,7 @@ services:
       - caddy_data:/data # contains things like TLS certificates https://caddyserver.com/docs/conventions#file-locations
       - caddy_config:/config # stores confiugrations, e.g. the latest active caddyfile https://caddyserver.com/docs/conventions#file-locations
     extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - "host.docker.internal:host-gateway" # allows the container to access the host machine (also on linux) https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach/24326540#24326540
       
 volumes:
   caddy_data:

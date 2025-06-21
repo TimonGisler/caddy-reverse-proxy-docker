@@ -1,3 +1,9 @@
+{
+  # If a browser connects to a server via the ip, SNI will not be set, which makes it impossible to serve the correct certificate, here we tell caddy to use 
+  # 192.168.0.107 as default SNI, which will serve the certificate --> https://github.com/caddyserver/caddy/issues/6364#issuecomment-2784256295
+  default_sni 192.168.0.107
+}
+
 # This is an example file for easy setup. To use it simply pull this repo.
 # localhost must be replaced with the domain name of your choice and host.docker.internal:5281 with the address of the service you want to proxy to
 
@@ -8,6 +14,7 @@
 
 192.168.0.107 { # https://caddyserver.com/docs/caddyfile/concepts#addresses --> 192.168.0.107 is just the static ip of my laptop
   # This is necessary because lets encrypt can obviously not generate an valid certificate for my local ip address, so i simply tell caddy to do it itself
+  # while not perfect, it is much better than nothing see: https://security.stackexchange.com/a/38730
 	tls internal
   # this below wont work always on all machines (for example linux it might not work) https://stackoverflow.com/questions/48546124/what-is-the-linux-equivalent-of-host-docker-internal
   # as alternative one could try to use 172.17.0.1
