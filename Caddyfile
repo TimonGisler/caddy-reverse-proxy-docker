@@ -6,7 +6,7 @@
 
 # SSL can only be added for non ip addresses: https://caddyserver.com/docs/automatic-https#hostname-requirements found through: https://caddy.community/t/automatic-https-with-ip-address/16532/2
 
-localhost { # https://caddyserver.com/docs/caddyfile/concepts#addresses
+192.168.0.107 { # https://caddyserver.com/docs/caddyfile/concepts#addresses --> 192.168.0.107 is just the static ip of my laptop
 
   # this below wont work always on all machines (for example linux it might not work) https://stackoverflow.com/questions/48546124/what-is-the-linux-equivalent-of-host-docker-internal
   # as alternative one could try to use 172.17.0.1
