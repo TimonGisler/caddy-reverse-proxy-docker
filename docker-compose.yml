@@ -17,7 +17,8 @@ services:
       # - ./site:/srv # mount site folder to container --> used for statically serving files if configured
       - caddy_data:/data # contains things like TLS certificates https://caddyserver.com/docs/conventions#file-locations
       - caddy_config:/config # stores confiugrations, e.g. the latest active caddyfile https://caddyserver.com/docs/conventions#file-locations
-
+    extra_hosts: # Needed so that it works on linux
+          - "host.docker.internal:host-gateway"
 volumes:
   caddy_data:
   caddy_config:
